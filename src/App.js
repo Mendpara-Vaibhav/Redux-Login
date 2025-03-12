@@ -1,8 +1,11 @@
-import './App.css';
+import "./App.css";
+import Body from "./Components/Body";
 
 function App() {
   return (
-    <h1>Redux Login</h1>
+    <>
+      <Body />
+    </>
   );
 }
 
