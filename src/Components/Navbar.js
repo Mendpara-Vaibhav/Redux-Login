@@ -1,48 +1,63 @@
+import { NavLink } from "react-router-dom";
 import rocketImage from "../assets/img/undraw_rocket.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogout } from "../redux/user/user.action";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  const handleLogout = () => {
+    // console.log("yes logged out");
+    dispatch(setLogout());
+  };
+
   return (
     <>
       <ul
-        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
         id="accordionSidebar"
       >
-        {/* <!-- Sidebar - Brand --> */}
-        <a
-          class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="/"
+        <NavLink
+          className="sidebar-brand d-flex align-items-center justify-content-center"
+          to="/"
         >
-          <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+          <div className="sidebar-brand-icon rotate-n-15">
+            <i className="fas fa-laugh-wink"></i>
           </div>
-          <div class="sidebar-brand-text mx-3">
+          <div className="sidebar-brand-text mx-3">
             SB Admin <sup>2</sup>
           </div>
-        </a>
+        </NavLink>
 
-        {/* <!-- Divider --> */}
-        <hr class="sidebar-divider my-0" />
+        {isLoggedIn ? (
+          <button onClick={handleLogout} className="btn btn-danger mt-3">
+            Logout
+          </button>
+        ) : (
+          <NavLink to="/login" className="btn btn-primary mt-3">
+            Login
+          </NavLink>
+        )}
 
-        {/* <!-- Nav Item - Dashboard --> */}
-        <li class="nav-item active">
-          <a class="nav-link" href="/">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+        <hr className="sidebar-divider my-0" />
+
+        <li className="nav-item active">
+          <NavLink className="nav-link" to="/">
+            <i className="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
-          </a>
+          </NavLink>
         </li>
 
-        {/* <!-- Divider --> */}
-        <hr class="sidebar-divider" />
+        <hr className="sidebar-divider" />
 
-        {/* <!-- Heading --> */}
-        <div class="sidebar-heading">Interface</div>
+        <div className="sidebar-heading">Interface</div>
 
-        {/* <!-- Nav Item - Pages Collapse Menu --> */}
-        <li class="nav-item">
-          <a class="nav-link" href="/buttons">
-            <i class="fas fa-fw fa-cog"></i>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/buttons">
+            <i className="fas fa-fw fa-cog"></i>
             <span>Components Buttons</span>
-          </a>
+          </NavLink>
         </li>
 
         {/* <li class="nav-item">
@@ -52,12 +67,11 @@ const Navbar = () => {
           </a>
         </li> */}
 
-        {/* <!-- Nav Item - Utilities Collapse Menu --> */}
-        <li class="nav-item">
-          <a class="nav-link" href="/colors">
-            <i class="fas fa-fw fa-wrench"></i>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/colors">
+            <i className="fas fa-fw fa-wrench"></i>
             <span>Utilities Colors</span>
-          </a>
+          </NavLink>
         </li>
 
         {/* <li class="nav-item">
@@ -81,57 +95,52 @@ const Navbar = () => {
           </a>
         </li> */}
 
-        {/* <!-- Divider --> */}
-        <hr class="sidebar-divider" />
+        <hr className="sidebar-divider" />
 
-        {/* <!-- Heading --> */}
-        <div class="sidebar-heading">Addons</div>
+        <div className="sidebar-heading">Addons</div>
 
-        {/* <!-- Nav Item - Pages Collapse Menu --> */}
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="/login">
-            <i class="fas fa-fw fa-folder"></i>
+        <li className="nav-item">
+          <NavLink className="nav-link collapsed" to="/login">
+            <i className="fas fa-fw fa-folder"></i>
             <span>Pages Login</span>
-          </a>
+          </NavLink>
         </li>
 
-        {/* <!-- Nav Item - Charts --> */}
-        <li class="nav-item">
-          <a class="nav-link" href="/charts">
-            <i class="fas fa-fw fa-chart-area"></i>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/charts">
+            <i className="fas fa-fw fa-chart-area"></i>
             <span>Charts</span>
-          </a>
+          </NavLink>
         </li>
 
-        {/* <!-- Nav Item - Tables --> */}
-        <li class="nav-item">
-          <a class="nav-link" href="/tables">
-            <i class="fas fa-fw fa-table"></i>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/tables">
+            <i className="fas fa-fw fa-table"></i>
             <span>Tables</span>
-          </a>
+          </NavLink>
         </li>
 
-        {/* <!-- Divider --> */}
-        <hr class="sidebar-divider d-none d-md-block" />
+        <hr className="sidebar-divider d-none d-md-block" />
 
-        {/* <!-- Sidebar Toggler (Sidebar) --> */}
-        <div class="text-center d-none d-md-inline">
-          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <div className="text-center d-none d-md-inline">
+          <button
+            className="rounded-circle border-0"
+            id="sidebarToggle"
+          ></button>
         </div>
 
-        {/* <!-- Sidebar Message --> */}
-        <div class="sidebar-card d-none d-lg-flex">
+        <div className="sidebar-card d-none d-lg-flex">
           <img
-            class="sidebar-card-illustration mb-2"
+            className="sidebar-card-illustration mb-2"
             src={rocketImage}
             alt="rocket"
           />
-          <p class="text-center mb-2">
+          <p className="text-center mb-2">
             <strong>SB Admin Pro</strong> is packed with premium features,
             components, and more!
           </p>
           <a
-            class="btn btn-success btn-sm"
+            className="btn btn-success btn-sm"
             href="https://startbootstrap.com/theme/sb-admin-pro"
           >
             Upgrade to Pro!
